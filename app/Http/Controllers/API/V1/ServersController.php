@@ -7,6 +7,7 @@ use App\Http\Requests\StoreServersRequest;
 use App\Http\Requests\UpdateServersRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ServersResource;
+use App\Http\Resources\V1\ServersCollection;
 
 
 
@@ -17,7 +18,7 @@ class ServersController extends Controller
      */
     public function index()
     {
-        return Servers::all();
+        return new ServersCollection(Servers::all());
     }
 
     /**

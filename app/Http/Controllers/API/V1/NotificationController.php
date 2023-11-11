@@ -7,6 +7,7 @@ use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\NotificationsResource;
+use App\Http\Resources\V1\NotificationsCollection;
 
 
 
@@ -17,7 +18,7 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        return Notification::all();
+        return new NotificationsCollection (Notification::all());
     }
 
     /**
