@@ -19,7 +19,7 @@ class NotificationsResource extends JsonResource
             'title' => $this->title,
             'dateTime' => $this->dateTime,
             'text' => $this->text,
-            'serverID'=>$this->servers_id,
+            'serverId'=>$this->servers_id,
            ];
     }
 }

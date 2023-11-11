@@ -8,17 +8,26 @@ use App\Http\Requests\UpdateServersRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ServersResource;
 use App\Http\Resources\V1\ServersCollection;
-
-
-
+use Illuminate\Http\Request;
+use App\Services\V1\ServerQuery;
 class ServersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new ServersCollection(Servers::all());
+        $filter = new ServerQuery();
+        $queryItems = $filter->transform($request);
+
+        if(count($queryItems) == 0) {
+            return new ServersCollection(Servers::paginate());
+
+        } else {
+            return new ServersCollection(Servers::where($queryItems)->paginate());
+        }
+
+
     }
 
     /**
