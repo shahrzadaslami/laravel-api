@@ -36,9 +36,9 @@ class ServersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Servers $servers)
+    public function show(Servers $server)
     {
-        //
+        return $server;
     }
 
     /**
