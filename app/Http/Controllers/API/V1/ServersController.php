@@ -6,6 +6,9 @@ use App\Models\Servers;
 use App\Http\Requests\StoreServersRequest;
 use App\Http\Requests\UpdateServersRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\ServersResource;
+
+
 
 class ServersController extends Controller
 {
@@ -38,7 +41,7 @@ class ServersController extends Controller
      */
     public function show(Servers $server)
     {
-        return $server;
+        return  new ServersResource($server);
     }
 
     /**

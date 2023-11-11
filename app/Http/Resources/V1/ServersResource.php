@@ -14,6 +14,14 @@ class ServersResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+       return [
+        'id' => $this->id,
+        'title' => $this->title,
+        'description' => $this->description,
+        'sshPort' => $this->sshPort,
+        'userName'=>$this->userName,
+        'state'=>$this->state,
+        'ip'=>$this->ip,
+       ];
     }
 }

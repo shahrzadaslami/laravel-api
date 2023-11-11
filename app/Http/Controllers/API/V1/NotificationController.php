@@ -6,6 +6,7 @@ use App\Models\Notification;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\NotificationsResource;
 
 
 
@@ -40,7 +41,7 @@ class NotificationController extends Controller
      */
     public function show(Notification $notification)
     {
-        return $notification;
+        return new NotificationsResource($notification);
     }
 
     /**
