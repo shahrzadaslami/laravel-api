@@ -1,9 +1,9 @@
 <?php
-namespace App\Services\V1;
+namespace App\Filters\V1;
 use Illuminate\Http\Request;
+use App\Filters\ApiFilter;
 
-
-class ServerQuery {
+class ServerFilter extends ApiFilter {
     protected $allowedParms = [
         'id' => ['eq', 'gt', 'lt'],
         'state'=> ['eq'],

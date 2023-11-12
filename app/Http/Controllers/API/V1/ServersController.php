@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ServersResource;
 use App\Http\Resources\V1\ServersCollection;
 use Illuminate\Http\Request;
-use App\Services\V1\ServerQuery;
+use App\Filters\V1\ServerFilter;
 class ServersController extends Controller
 {
     /**
@@ -17,7 +17,7 @@ class ServersController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = new ServerQuery();
+        $filter = new ServerFilter();
         $queryItems = $filter->transform($request);
 
         if(count($queryItems) == 0) {

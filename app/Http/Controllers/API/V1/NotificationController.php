@@ -8,7 +8,8 @@ use App\Http\Requests\UpdateNotificationRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\NotificationsResource;
 use App\Http\Resources\V1\NotificationsCollection;
-
+use App\Filters\V1\NotificationFilter;
+use Illuminate\Http\Request;
 
 
 class NotificationController extends Controller
@@ -16,9 +17,17 @@ class NotificationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new NotificationsCollection (Notification::all());
+        $filter = new NotificationFilter();
+        $queryItems = $filter->transform($request);
+        if(count($queryItems) == 0) {
+            return new NotificationsCollection (Notification::all());
+
+        }else{
+            return new NotificationsCollection(Notification::where($queryItems)->paginate());
+        };
+
     }
 
     /**
