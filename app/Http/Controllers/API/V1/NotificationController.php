@@ -25,7 +25,8 @@ class NotificationController extends Controller
             return new NotificationsCollection (Notification::all());
 
         }else{
-            return new NotificationsCollection(Notification::where($queryItems)->paginate());
+            $notifications = Notification::where($queryItems)->paginate();
+            return new NotificationsCollection($notifications->appends($request->query()));
         };
 
     }

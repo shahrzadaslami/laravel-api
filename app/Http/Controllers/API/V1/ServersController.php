@@ -24,7 +24,8 @@ class ServersController extends Controller
             return new ServersCollection(Servers::paginate());
 
         } else {
-            return new ServersCollection(Servers::where($queryItems)->paginate());
+            $servers = Servers::where($queryItems)->paginate();
+            return new ServersCollection($servers->appends($request->query()));
         }
 
 
