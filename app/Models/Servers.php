@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Servers extends Model
 {
     use HasFactory;
-
+    protected $fillable =[
+        'title',
+        'description',
+        'ip',
+        'userName',
+        'password',
+        'sshPort',
+        'state',
+    ];
 
     public function notifications(){
         return $this->hasMany(Notification::class);

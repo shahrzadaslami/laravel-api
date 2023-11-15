@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Models\Servers;
-use App\Http\Requests\StoreServersRequest;
 use App\Http\Requests\UpdateServersRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ServersResource;
 use App\Http\Resources\V1\ServersCollection;
 use Illuminate\Http\Request;
 use App\Filters\V1\ServerFilter;
+use App\Http\Requests\V1\StoreServersRequest;
 class ServersController extends Controller
 {
     /**
@@ -21,7 +21,7 @@ class ServersController extends Controller
         $queryItems = $filter->transform($request);
 
         if(count($queryItems) == 0) {
-            return new ServersCollection(Servers::paginate());
+            return new ServersCollection(Servers::all());
 
         } else {
             $servers = Servers::where($queryItems)->paginate();
@@ -44,7 +44,7 @@ class ServersController extends Controller
      */
     public function store(StoreServersRequest $request)
     {
-        //
+        return new ServersResource(Servers::create($request->all()));
     }
 
     /**
