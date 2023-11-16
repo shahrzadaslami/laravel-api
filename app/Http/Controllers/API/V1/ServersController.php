@@ -74,8 +74,8 @@ class ServersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Servers $servers)
+    public function destroy(Servers $server)
     {
-        //
+        return  new ServersResource($server->delete());
     }
 }
